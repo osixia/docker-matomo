@@ -1,0 +1,23 @@
+PIWIK_BACKUP_CRON_EXP: 30 4 * * * #every day at 4:30am
+PIWIK_BACKUP_TTL: 15 # Delete backups that are over 15 days
+
+
+# Apache
+PIWIK_SERVER_ADMIN: webmaster@example.org
+PIWIK_SERVER_PATH: /piwik
+
+# Self signed certificat will be generated
+# if PIWIK_HTTPS is set to true and no certificat and key are provided.
+
+# To use your custom certificat and key 2 options :
+# - add them in service/piwik/assets/apache2/ssl and build the image
+# - or during docker run mount a data volume with those files to /container/service/piwik/apache2/ssl
+PIWIK_HTTPS: true
+PIWIK_HTTPS_CRT_FILENAME: piwik.crt
+PIWIK_HTTPS_KEY_FILENAME: piwik.key
+PIWIK_HTTPS_CA_CRT_FILENAME: ca.crt
+
+PIWIK_TRUST_PROXY_SSL: false
+
+PIWIK_SSL_HELPER_PREFIX: piwik
+SSL_HELPER_AUTO_RENEW_SERVICES_IMPACTED: :apache2 :php5-fpm
