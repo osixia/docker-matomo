@@ -6,10 +6,15 @@
 
 [hub]: https://hub.docker.com/r/osixia/piwik/
 
-Latest release: 2.16.2 - Piwik 2.16.2 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/piwik/) 
+Latest release: 2.16.5 - Piwik 2.16.5 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/piwik/) 
 
 **A docker image to run Piwik.**
 > [piwik.org](https://piwik.org)
+
+### Under the hood: osixia/web-baseimage
+
+This image is based on osixia/web-baseimage.
+More info: https://github.com/osixia/docker-web-baseimage
 
 ## Changelog
 
