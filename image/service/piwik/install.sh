@@ -1,6 +1,10 @@
 #!/bin/bash -e
 # this script is run during the image build
 
+# set -x (bash debug) if log level is trace
+# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/log-helper
+log-helper level eq trace && set -x
+
 # add Piwik virtualhosts
 ln -sf /container/service/piwik/assets/apache2/piwik.conf /etc/apache2/sites-available/piwik.conf
 ln -sf /container/service/piwik/assets/apache2/piwik-ssl.conf /etc/apache2/sites-available/piwik-ssl.conf
