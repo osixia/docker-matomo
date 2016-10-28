@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+# get database name, user and password from configuration
+# /!\ configuration must use simple quote :)
+# and it's a bad idea to have " in your username, password and database name
+dbParams=$(sed -n '/\[database\]/,/\[/{/\[database\]/n;/\[/!{/#*\s*\s*=.*/p}}' /var/www/piwik/config/config.ini.php)
+host=$(echo $dbParams | sed -n "s/.*host\s*=\s*\"\(.*\)/\1/p" | sed "s/\".*//g")
+databaseUser=$(echo $dbParams | sed -n "s/.*username\s*=\s*\"\(.*\)/\1/p" | sed "s/\".*//g")
+databasePassword=$(echo $dbParams | sed -n "s/.*password\s*=\s*\"\(.*\)/\1/p" | sed "s/\".*//g")
+database=$(echo $dbParams | sed -n "s/.*dbname\s*=\s*\"\(.*\)/\1/p" | sed "s/\".*//g")

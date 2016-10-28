@@ -2,7 +2,7 @@ FROM osixia/web-baseimage:0.1.11
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Piwik version
-ENV PIWIK_VERSION 2.16.5
+ENV PIWIK_VERSION 2.17.0
 
 # MariaDB version
 ENV MARIADB_MAJOR 10.1
@@ -27,6 +27,7 @@ RUN apt-get update \
 		&& LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
        ca-certificates \
        curl \
+       mariadb-client-$MARIADB_MAJOR \
        php5-cli \
        php5-curl \
        php5-gd \
