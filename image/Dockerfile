@@ -1,8 +1,8 @@
-FROM osixia/web-baseimage:0.1.11
+FROM osixia/web-baseimage:0.1.12
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Piwik version
-ENV PIWIK_VERSION 2.17.0
+ENV PIWIK_VERSION 2.17.1
 
 # MariaDB version
 ENV MARIADB_MAJOR 10.1
