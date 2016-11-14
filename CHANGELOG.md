@@ -3,6 +3,7 @@
 ## 2.17.1
   - Piwik 2.17.1
   - chmod 600 on backups
+  - Upgrade baseimage: web-baseimage:0.1.12
 
 ## 2.17.0
   - Piwik 2.17.0
