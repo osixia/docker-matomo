@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.4
+  - Piwik 3.0.4
+  - Upgrade baseimage: web-baseimage:1.0.0
+
 ## 2.17.1
   - Piwik 2.17.1
   - chmod 600 on backups

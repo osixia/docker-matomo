@@ -1,5 +1,5 @@
 NAME = osixia/piwik
-VERSION = 2.17.1
+VERSION = 3.0.4
 
 all: build
 
