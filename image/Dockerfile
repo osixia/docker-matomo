@@ -1,19 +1,19 @@
-FROM osixia/web-baseimage:1.0.0
+FROM osixia/web-baseimage:1.1.0
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Piwik version
-ENV PIWIK_VERSION 3.0.4
+ARG PIWIK_VERSION=3.0.4
 
 # MariaDB version
-ENV MARIADB_MAJOR 10.1
+ARG MARIADB_MAJOR=10.2
 
-# Install apache2 and php5-fpm using osixia/baseimage utils
+# Install apache2 and php7.0-fpm using osixia/baseimage utils
 # Caution: /container/tool/install-service-available arguments order is important
-# php5-fpm install will detect apache2 and configure it
+# php7.0-fpm install will detect apache2 and configure it
 
 # Add MariaDB repository
-RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db \
-    && echo "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/$MARIADB_MAJOR/debian jessie main" > /etc/apt/sources.list.d/mariadb.list \
+RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 \
+    && echo "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/$MARIADB_MAJOR/debian stretch main" > /etc/apt/sources.list.d/mariadb.list \
     && { \
 		     echo 'Package: *'; \
 		     echo 'Pin: release o=MariaDB'; \
@@ -23,17 +23,19 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db 
 # Download, check integrity and unzip phpMyAdmin to /var/www/piwik_bootstrap
 RUN apt-get update \
 		&& /container/tool/add-multiple-process-stack \
-		&& /container/tool/add-service-available :apache2 :php5-fpm :ssl-tools \
+		&& /container/tool/add-service-available :apache2 :php7.0-fpm :ssl-tools \
 		&& LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
        ca-certificates \
        curl \
        mariadb-client-$MARIADB_MAJOR \
-       php5-cli \
-       php5-curl \
-       php5-gd \
-       php5-geoip \
-       php5-ldap \
-       php5-mysql \
+       php7.0-cli \
+       php7.0-curl \
+       php7.0-gd \
+       php7.0-geoip \
+       php7.0-ldap \
+       php7.0-mbstring \
+       php7.0-mysql \
+       php7.0-xml \
        ssmtp \
        zip \
 		&& curl -o piwik.tar.gz -SL https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz \

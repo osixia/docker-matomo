@@ -2,7 +2,7 @@
 
 ## 3.0.4
   - Piwik 3.0.4
-  - Upgrade baseimage: web-baseimage:1.0.0
+  - Upgrade baseimage: web-baseimage:1.1.0 (debian stretch, php7)
 
 ## 2.17.1
   - Piwik 2.17.1
