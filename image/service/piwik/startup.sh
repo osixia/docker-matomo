@@ -56,10 +56,10 @@ fi
 
 
 # if there is no config
-if [ ! -e "/var/www/piwik/config/config.ini.php" ] && [ -e "${CONTAINER_SERVICE_DIR}/piwik/assets/config.ini.php" ]; then
+if [ ! -e "/var/www/piwik/config/config.ini.php" ] && [ -e "${CONTAINER_SERVICE_DIR}/piwik/assets/config/config.ini.php" ]; then
 
-  log-helper debug "link ${CONTAINER_SERVICE_DIR}/piwik/assets/config.ini.php to /var/www/piwik/config/config.ini.php"
-  ln -sf ${CONTAINER_SERVICE_DIR}/piwik/assets/config.ini.php /var/www/piwik/config/config.ini.php
+  log-helper debug "link ${CONTAINER_SERVICE_DIR}/piwik/assets/config/config.ini.php to /var/www/piwik/config/config.ini.php"
+  ln -sf ${CONTAINER_SERVICE_DIR}/piwik/assets/config/config.ini.php /var/www/piwik/config/config.ini.php
 
 fi
 
