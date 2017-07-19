@@ -9,11 +9,11 @@ log-helper level eq trace && set -x
 ln -sf /container/service/piwik/assets/apache2/piwik.conf /etc/apache2/sites-available/piwik.conf
 ln -sf /container/service/piwik/assets/apache2/piwik-ssl.conf /etc/apache2/sites-available/piwik-ssl.conf
 
-cat /container/service/piwik/assets/php5-fpm/pool.conf >> /etc/php5/fpm/pool.d/www.conf
-rm /container/service/piwik/assets/php5-fpm/pool.conf
+cat /container/service/piwik/assets/php7.0-fpm/pool.conf >> /etc/php/7.0/fpm/pool.d/www.conf
+rm /container/service/piwik/assets/php7.0-fpm/pool.conf
 
-echo "open_basedir = /var/www" >> /etc/php5/fpm/php.ini
-echo "geoip.custom_directory=/var/www/piwik/misc" >> /etc/php5/fpm/php.ini
+echo "open_basedir = /var/www" >> /etc/php/7.0/fpm/php.ini
+echo "geoip.custom_directory=/var/www/piwik/misc" >> /etc/php/7.0/fpm/php.ini
 
 
 mkdir -p /var/www/tmp
