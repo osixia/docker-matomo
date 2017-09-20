@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.0
+  - Piwik 3.1.0
+  - Add opcache config
+
 ## 3.0.4
   - Piwik 3.0.4
   - Upgrade baseimage: web-baseimage:1.1.0 (debian stretch, php7)

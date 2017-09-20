@@ -72,7 +72,7 @@ chown www-data:www-data -R /var/www
 if [ -e "/var/www/piwik/config/config.ini.php" ]; then
 
   chown www-data:www-data /var/www/piwik/config/config.ini.php
-  chmod 400 /var/www/piwik/config/config.ini.php
+  chmod 600 /var/www/piwik/config/config.ini.php
 
 fi
 

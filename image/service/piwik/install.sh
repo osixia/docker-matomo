@@ -1,16 +1,15 @@
 #!/bin/bash -e
 # this script is run during the image build
 
-# set -x (bash debug) if log level is trace
-# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/log-helper
-log-helper level eq trace && set -x
-
 # add Piwik virtualhosts
 ln -sf /container/service/piwik/assets/apache2/piwik.conf /etc/apache2/sites-available/piwik.conf
 ln -sf /container/service/piwik/assets/apache2/piwik-ssl.conf /etc/apache2/sites-available/piwik-ssl.conf
 
 cat /container/service/piwik/assets/php7.0-fpm/pool.conf >> /etc/php/7.0/fpm/pool.d/www.conf
 rm /container/service/piwik/assets/php7.0-fpm/pool.conf
+
+cp -f /container/service/piwik/assets/php7.0-fpm/opcache.ini /etc/php/7.0/fpm/conf.d/opcache.ini
+rm /container/service/piwik/assets/php7.0-fpm/opcache.ini
 
 echo "open_basedir = /var/www" >> /etc/php/7.0/fpm/php.ini
 echo "geoip.custom_directory=/var/www/piwik/misc" >> /etc/php/7.0/fpm/php.ini
