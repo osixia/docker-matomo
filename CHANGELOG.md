@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.1.1
+  - Piwik 3.1.1
+
 ## 3.1.0
   - Piwik 3.1.0
   - Add opcache config
