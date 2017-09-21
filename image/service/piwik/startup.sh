@@ -22,17 +22,16 @@ if [ "${PIWIK_HTTPS,,}" == "true" ]; then
     sed -i "s/#SSLCACertificateFile/SSLCACertificateFile/g" ${CONTAINER_SERVICE_DIR}/piwik/assets/apache2/https.conf
   fi
 
-  ln -sf ${CONTAINER_SERVICE_DIR}/piwik/assets/apache2/https.conf /etc/apache2/sites-available/piwik-ssl.conf
-  a2ensite piwik-ssl | log-helper debug
-
+  ln -sf ${CONTAINER_SERVICE_DIR}/piwik/assets/apache2/https.conf /etc/apache2/sites-available/piwik.conf
 #
 # HTTP config
 #
 else
   log-helper info "Set apache2 http config..."
+  ln -sf ${CONTAINER_SERVICE_DIR}/piwik/assets/apache2/http.conf /etc/apache2/sites-available/piwik.conf
 fi
-# unable http no matter what :)
-ln -sf ${CONTAINER_SERVICE_DIR}/piwik/assets/apache2/http.conf /etc/apache2/sites-available/piwik.conf
+
+a2ensite piwik | log-helper debug
 
 #
 # Reverse proxy config
@@ -40,8 +39,6 @@ ln -sf ${CONTAINER_SERVICE_DIR}/piwik/assets/apache2/http.conf /etc/apache2/site
 if [ "${PIWIK_TRUST_PROXY_SSL,,}" == "true" ]; then
   echo 'SetEnvIf X-Forwarded-Proto "^https$" HTTPS=on' > /etc/apache2/mods-enabled/remoteip_ssl.conf
 fi
-
-a2ensite piwik | log-helper debug
 
 #
 # Piwik directory is empty, we use the bootstrap
@@ -54,6 +51,29 @@ if [ ! "$(ls -A -I lost+found /var/www/piwik)" ]; then
   rm -rf /var/www/piwik_bootstrap
 fi
 
+#
+#
+#
+if [ "${PIWIK_FORCE_UPDATE,,}" == "true" ]; then
+  CURRENT_VERSION=""
+
+  # test if new version need to be installed
+  IMAGE_VERSION=$(cat /var/www/piwik_bootstrap/VERSION)
+  [ -e "/var/www/piwik/VERSION" ] && CURRENT_VERSION=$(cat /var/www/piwik/VERSION)
+
+  log-helper info "Check Piwik versions..."
+  log-helper info "Docker image version: ${IMAGE_VERSION}"
+  log-helper info "Current version: ${CURRENT_VERSION}"
+
+  if [ "${IMAGE_VERSION}" != "${CURRENT_VERSION}" ]; then
+    log-helper info "Remove current files (except config.ini.php and plugins)..."
+    find /var/www/piwik -mindepth 1 -maxdepth 1 \( -path /var/www/piwik/config -o -path /var/www/piwik/plugins \) -prune -o -exec rm -rf {} + || true
+    find /var/www/piwik/config -mindepth 1 -maxdepth 1 \( -path /var/www/piwik/config/config.ini.php \) -prune -o -exec rm -rf {} + || true
+
+    log-helper info "Add image files..."
+    cp -Rf /var/www/piwik_bootstrap/. /var/www/piwik
+  fi
+fi
 
 # if there is no config
 if [ ! -e "/var/www/piwik/config/config.ini.php" ] && [ -e "${CONTAINER_SERVICE_DIR}/piwik/assets/config/config.ini.php" ]; then
