@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.2.0
+  - Piwik 3.2.0
+
 ## 3.1.1
   - Piwik 3.1.1
   - Add PIWIK_FORCE_UPDATE environment variable
