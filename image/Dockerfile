@@ -2,7 +2,7 @@ FROM osixia/web-baseimage:1.1.0
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Piwik version
-ARG PIWIK_VERSION=3.1.0
+ARG PIWIK_VERSION=3.1.1
 
 # MariaDB version
 ARG MARIADB_MAJOR=10.2
@@ -41,9 +41,10 @@ RUN apt-get update \
 		&& curl -o piwik.tar.gz -SL https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz \
 		&& mkdir -p /var/www/piwik_bootstrap /var/www/piwik \
 		&& tar -xzf piwik.tar.gz --strip 1 -C /var/www/piwik_bootstrap \
+    && echo "${PIWIK_VERSION}" > /var/www/piwik_bootstrap/VERSION \
     && curl -fsSL -o /var/www/piwik_bootstrap/misc/GeoIPCity.dat.gz https://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
     && gunzip /var/www/piwik_bootstrap/misc/GeoIPCity.dat.gz \
-		&& apt-get remove -y --purge --auto-remove curl ca-certificates \
+		&& apt-get remove -y --purge --auto-remove curl \
     && rm piwik.tar.gz \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -6,7 +6,7 @@
 
 [hub]: https://hub.docker.com/r/osixia/piwik/
 
-Latest release: 3.1.0 - Piwik 3.1.0 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/piwik/) 
+Latest release: 3.1.1 - Piwik 3.1.1 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/piwik/) 
 
 **A docker image to run Piwik.**
 > [piwik.org](https://piwik.org)

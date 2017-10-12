@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.1
+  - Piwik 3.1.1
+  - Add PIWIK_FORCE_UPDATE environment variable
+
 ## 3.1.0
   - Piwik 3.1.0
   - Add opcache config

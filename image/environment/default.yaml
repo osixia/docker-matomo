@@ -1,3 +1,5 @@
+PIWIK_FORCE_UPDATE: false # if piwik image version is > current version the image version will be installed
+
 PIWIK_BACKUP_CRON_EXP: 30 4 * * * #every day at 4:30am
 PIWIK_BACKUP_TTL: 15 # Delete backups that are over 15 days
 
