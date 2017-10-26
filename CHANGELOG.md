@@ -2,6 +2,7 @@
 
 ## 3.2.0
   - Piwik 3.2.0
+  - Upgrade baseimage: web-baseimage:1.1.1
 
 ## 3.1.1
   - Piwik 3.1.1
