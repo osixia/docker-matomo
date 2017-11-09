@@ -14,7 +14,6 @@ rm /container/service/piwik/assets/php7.0-fpm/opcache.ini
 echo "open_basedir = /var/www" >> /etc/php/7.0/fpm/php.ini
 echo "geoip.custom_directory=/var/www/piwik/misc" >> /etc/php/7.0/fpm/php.ini
 
-
 mkdir -p /var/www/tmp
 chown www-data:www-data /var/www/tmp
 chmod 700 /var/www/tmp
@@ -22,3 +21,6 @@ chmod 700 /var/www/tmp
 # remove apache default host
 a2dissite 000-default
 rm -rf /var/www/html
+
+# copy robots.txt
+cp -f /container/service/piwik/assets/robots.txt /var/www/piwik_bootstrap/robots.txt
