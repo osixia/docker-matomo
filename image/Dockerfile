@@ -2,7 +2,7 @@ FROM osixia/web-baseimage:1.1.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Piwik version
-ARG PIWIK_VERSION=3.2.0
+ARG PIWIK_VERSION=3.2.1
 
 # MariaDB version
 ARG MARIADB_MAJOR=10.2
