@@ -1,5 +1,5 @@
-NAME = osixia/piwik
-VERSION = 3.2.1
+NAME = osixia/matomo
+VERSION = 3.3.0
 
 .PHONY: build build-nocache test tag-latest push push-latest release git-tag-version
 

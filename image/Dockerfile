@@ -1,8 +1,8 @@
 FROM osixia/web-baseimage:1.1.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
-# Piwik version
-ARG PIWIK_VERSION=3.2.1
+# Matomo version
+ARG MATOMO_VERSION=3.3.0
 
 # MariaDB version
 ARG MARIADB_MAJOR=10.2
@@ -20,7 +20,7 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 
 		     echo 'Pin-Priority: 999'; \
 	     } > /etc/apt/preferences.d/mariadb
 
-# Download, check integrity and unzip phpMyAdmin to /var/www/piwik_bootstrap
+# Download, check integrity and unzip phpMyAdmin to /var/www/matomo_bootstrap
 RUN apt-get update \
 		&& /container/tool/add-multiple-process-stack \
 		&& /container/tool/add-service-available :apache2 :php7.0-fpm :ssl-tools \
@@ -38,14 +38,14 @@ RUN apt-get update \
        php7.0-xml \
        ssmtp \
        zip \
-		&& curl -o piwik.tar.gz -SL https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz \
-		&& mkdir -p /var/www/piwik_bootstrap /var/www/piwik \
-		&& tar -xzf piwik.tar.gz --strip 1 -C /var/www/piwik_bootstrap \
-    && echo "${PIWIK_VERSION}" > /var/www/piwik_bootstrap/VERSION \
-    && curl -fsSL -o /var/www/piwik_bootstrap/misc/GeoIPCity.dat.gz https://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
-    && gunzip /var/www/piwik_bootstrap/misc/GeoIPCity.dat.gz \
+		&& curl -o matomo.tar.gz -SL https://builds.matomo.org/piwik-${MATOMO_VERSION}.tar.gz \
+		&& mkdir -p /var/www/matomo_bootstrap /var/www/matomo \
+		&& tar -xzf matomo.tar.gz --strip 1 -C /var/www/matomo_bootstrap \
+    && echo "${MATOMO_VERSION}" > /var/www/matomo_bootstrap/VERSION \
+    && curl -fsSL -o /var/www/matomo_bootstrap/misc/GeoIPCity.dat.gz https://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
+    && gunzip /var/www/matomo_bootstrap/misc/GeoIPCity.dat.gz \
 		&& apt-get remove -y --purge --auto-remove curl \
-    && rm piwik.tar.gz \
+    && rm matomo.tar.gz \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -60,7 +60,7 @@ RUN /container/tool/install-service
 ADD environment /container/environment/99-default
 
 # Set wordpress data directory in a data volume
-VOLUME ["/var/www/piwik", "/data/backup"]
+VOLUME ["/var/www/matomo", "/data/backup"]
 
 # Expose http and https default ports
 EXPOSE 80 443

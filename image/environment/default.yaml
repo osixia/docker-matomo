@@ -1,34 +1,34 @@
-PIWIK_FORCE_UPDATE: false # if piwik image version is > current version the image version will be installed
+MATOMO_FORCE_UPDATE: false # if matomo image version is > current version the image version will be installed
 
-PIWIK_BACKUP_CRON_EXP: 30 4 * * * #every day at 4:30am
-PIWIK_BACKUP_TTL: 15 # Delete backups that are over 15 days
+MATOMO_BACKUP_CRON_EXP: 30 4 * * * #every day at 4:30am
+MATOMO_BACKUP_TTL: 15 # Delete backups that are over 15 days
 
 
 # Apache
-PIWIK_SERVER_ADMIN: webmaster@example.org
-PIWIK_SERVER_PATH: /piwik
+MATOMO_SERVER_ADMIN: webmaster@example.org
+MATOMO_SERVER_PATH: /matomo
 
 # Self signed certificat will be generated
-# if PIWIK_HTTPS is set to true and no certificat and key are provided.
+# if MATOMO_HTTPS is set to true and no certificat and key are provided.
 
 # To use your custom certificat and key 2 options :
-# - add them in service/piwik/assets/apache2/ssl and build the image
-# - or during docker run mount a data volume with those files to /container/service/piwik/apache2/ssl
-PIWIK_HTTPS: true
-PIWIK_HTTPS_CRT_FILENAME: piwik.crt
-PIWIK_HTTPS_KEY_FILENAME: piwik.key
-PIWIK_HTTPS_CA_CRT_FILENAME: ca.crt
+# - add them in service/matomo/assets/apache2/ssl and build the image
+# - or during docker run mount a data volume with those files to /container/service/matomo/apache2/ssl
+MATOMO_HTTPS: true
+MATOMO_HTTPS_CRT_FILENAME: matomo.crt
+MATOMO_HTTPS_KEY_FILENAME: matomo.key
+MATOMO_HTTPS_CA_CRT_FILENAME: ca.crt
 
-PIWIK_TRUST_PROXY_SSL: false
+MATOMO_TRUST_PROXY_SSL: false
 
 # LDAP client tls config
-PIWIK_LDAP_CLIENT_TLS: false
-PIWIK_LDAP_CLIENT_TLS_REQCERT: demand
-PIWIK_LDAP_CLIENT_TLS_CA_CRT_FILENAME: ldap-ca.crt
-PIWIK_LDAP_CLIENT_TLS_CRT_FILENAME: ldap-client.crt
-PIWIK_LDAP_CLIENT_TLS_KEY_FILENAME: ldap-client.key
+MATOMO_LDAP_CLIENT_TLS: false
+MATOMO_LDAP_CLIENT_TLS_REQCERT: demand
+MATOMO_LDAP_CLIENT_TLS_CA_CRT_FILENAME: ldap-ca.crt
+MATOMO_LDAP_CLIENT_TLS_CRT_FILENAME: ldap-client.crt
+MATOMO_LDAP_CLIENT_TLS_KEY_FILENAME: ldap-client.key
 
-PIWIK_SSL_HELPER_PREFIX: piwik
+MATOMO_SSL_HELPER_PREFIX: matomo
 LDAP_CLIENT_SSL_HELPER_PREFIX: ldap
 
 SSL_HELPER_AUTO_RENEW_SERVICES_IMPACTED: :apache2 :php7.0-fpm

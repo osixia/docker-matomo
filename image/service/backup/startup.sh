@@ -16,7 +16,7 @@ FIRST_START_DONE="${CONTAINER_STATE_DIR}/docker-backup-backup-first-start-done"
 if [ ! -e "$FIRST_START_DONE" ]; then
 
   # adapt cronjobs file
-  sed -i "s|{{ PIWIK_BACKUP_CRON_EXP }}|${PIWIK_BACKUP_CRON_EXP}|g" ${CONTAINER_SERVICE_DIR}/backup/assets/cronjobs
+  sed -i "s|{{ MATOMO_BACKUP_CRON_EXP }}|${MATOMO_BACKUP_CRON_EXP}|g" ${CONTAINER_SERVICE_DIR}/backup/assets/cronjobs
 
   touch $FIRST_START_DONE
 fi

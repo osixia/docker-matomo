@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
-# Usage: /sbin/piwik-restore file [file] ...
+# Usage: /sbin/matomo-restore file [file] ...
 backupPath="/data/backup"
-backupFileSuffix="-piwik.tar.gz"
-backupDbSuffix="-piwik-db.tar.gz"
+backupFileSuffix="-matomo.tar.gz"
+backupDbSuffix="-matomo-db.tar.gz"
 databaseFile="database.sql"
 
 for file in "$@"
@@ -11,12 +11,12 @@ do
     echo "Processing file $file"
 
     if $(echo "$file" | grep -q -e "$backupFileSuffix"); then
-        echo "Restore piwik files"
+        echo "Restore matomo files"
         tar -xvzf $backupPath/$file -C /
         echo "done :)"
     elif $(echo "$file" | grep -q -e "$backupDbSuffix"); then
-        echo "Restore piwik database"
-        . /container/service/backup/assets/tool/piwik-get-db-params
+        echo "Restore matomo database"
+        . /container/service/backup/assets/tool/matomo-get-db-params
 
         rm -rf $databaseFile || true
         tar -xvzf $backupPath/$file
