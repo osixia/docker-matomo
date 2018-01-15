@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.2.1] - 2017-12-07
 ### Changed
-    - Piwik 3.2.1
+  - Piwik 3.2.1
 
 ## [3.2.0] - 2017-12-06
 ### Added
