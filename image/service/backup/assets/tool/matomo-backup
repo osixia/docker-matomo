@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+# Usage: /sbin/matomo-backup
+backupPath="/data/backup"
+backupFileSuffix="-matomo.tar.gz"
+backupDbSuffix="-matomo-db.tar.gz"
+databaseFile="database.sql"
+
+source /container/run/environment.sh
+
+# delete backups that are over $MATOMO_BACKUP_TTL days
+find $backupPath -type f -mtime +$MATOMO_BACKUP_TTL -exec rm {} \;
+
+# Date format for the dump file name
+dateFileFormat="+%Y%m%dT%H%M%S"
+backupFilePath="$backupPath/$(date "$dateFileFormat")$backupFileSuffix"
+
+# save config and plugins except default ones
+tar -czf $backupFilePath -C / var/www/matomo/config/config.ini.php var/www/matomo/plugins --exclude var/www/matomo/plugins/API --exclude var/www/matomo/plugins/Actions --exclude var/www/matomo/plugins/Annotations --exclude var/www/matomo/plugins/BulkTracking --exclude var/www/matomo/plugins/Contents --exclude var/www/matomo/plugins/CoreAdminHome --exclude var/www/matomo/plugins/CoreConsole --exclude var/www/matomo/plugins/CoreHome --exclude var/www/matomo/plugins/CorePluginsAdmin --exclude var/www/matomo/plugins/CoreUpdater --exclude var/www/matomo/plugins/CoreVisualizations --exclude var/www/matomo/plugins/CustomVariables --exclude var/www/matomo/plugins/DBStats --exclude var/www/matomo/plugins/Dashboard --exclude var/www/matomo/plugins/DevicePlugins --exclude var/www/matomo/plugins/DevicesDetection --exclude var/www/matomo/plugins/Diagnostics --exclude var/www/matomo/plugins/Ecommerce --exclude var/www/matomo/plugins/Events --exclude var/www/matomo/plugins/ExampleAPI --exclude var/www/matomo/plugins/ExampleCommand --exclude var/www/matomo/plugins/ExamplePlugin --exclude var/www/matomo/plugins/ExampleReport --exclude var/www/matomo/plugins/ExampleRssWidget --exclude var/www/matomo/plugins/ExampleSettingsPlugin --exclude var/www/matomo/plugins/ExampleTheme --exclude var/www/matomo/plugins/ExampleTracker --exclude var/www/matomo/plugins/ExampleUI --exclude var/www/matomo/plugins/ExampleVisualization --exclude var/www/matomo/plugins/Feedback --exclude var/www/matomo/plugins/Goals --exclude var/www/matomo/plugins/Heartbeat --exclude var/www/matomo/plugins/ImageGraph --exclude var/www/matomo/plugins/Insights --exclude var/www/matomo/plugins/Installation --exclude var/www/matomo/plugins/Intl --exclude var/www/matomo/plugins/LanguagesManager --exclude var/www/matomo/plugins/Live --exclude var/www/matomo/plugins/Login --exclude var/www/matomo/plugins/MobileAppMeasurable --exclude var/www/matomo/plugins/MobileMessaging --exclude var/www/matomo/plugins/Monolog --exclude var/www/matomo/plugins/Morpheus --exclude var/www/matomo/plugins/MultiSites --exclude var/www/matomo/plugins/Overlay --exclude var/www/matomo/plugins/PrivacyManager --exclude var/www/matomo/plugins/ProfessionalServices --exclude var/www/matomo/plugins/Provider --exclude var/www/matomo/plugins/Proxy --exclude var/www/matomo/plugins/Referrers --exclude var/www/matomo/plugins/Resolution --exclude var/www/matomo/plugins/SEO --exclude var/www/matomo/plugins/ScheduledReports --exclude var/www/matomo/plugins/SegmentEditor --exclude var/www/matomo/plugins/SitesManager --exclude var/www/matomo/plugins/Transitions --exclude var/www/matomo/plugins/UserCountry --exclude var/www/matomo/plugins/UserCountryMap --exclude var/www/matomo/plugins/UserId --exclude var/www/matomo/plugins/UserLanguage --exclude var/www/matomo/plugins/UsersManager --exclude var/www/matomo/plugins/VisitFrequency --exclude var/www/matomo/plugins/VisitTime --exclude var/www/matomo/plugins/VisitorInterest --exclude var/www/matomo/plugins/VisitsSummary --exclude var/www/matomo/plugins/WebsiteMeasurable --exclude var/www/matomo/plugins/Widgetize
+chmod 600 $backupFilePath
+
+# backup database
+. /container/service/backup/assets/tool/matomo-get-db-params
+rm -rf $databaseFile || true
+
+mysqldump -u $databaseUser -p$databasePassword --host $host $database > $databaseFile
+
+backupFilePath="$backupPath/$(date "$dateFileFormat")$backupDbSuffix"
+tar -czf $backupFilePath $databaseFile
+chmod 600 $backupFilePath
+
+rm -rf $databaseFile
+
+exit 0
