@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.5.0] - 2018-05-16
 ### Added
-  - MariaDB ssl 
+  - MariaDB ssl
 
 ### Changed
   - Matomo 3.5.0 (formerly Piwik)
@@ -68,13 +68,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 2.16.2 - 2016-09-24
 Initial release
 
-[3.4.0]: https://github.com/osixia/docker-mariadb/compare/v3.3.0...v3.4.0
-[3.3.0]: https://github.com/osixia/docker-mariadb/compare/v3.2.1...v3.3.0
-[3.2.1]: https://github.com/osixia/docker-mariadb/compare/v3.2.0...v3.2.1
-[3.2.0]: https://github.com/osixia/docker-mariadb/compare/v3.1.1...v3.2.0
-[3.1.1]: https://github.com/osixia/docker-mariadb/compare/v3.1.0...v3.1.1
-[3.1.0]: https://github.com/osixia/docker-mariadb/compare/v3.0.4...v3.1.0
-[3.0.4]: https://github.com/osixia/docker-mariadb/compare/v2.17.1...v3.0.4
-[2.17.1]: https://github.com/osixia/docker-mariadb/compare/v2.17.0...v2.17.1
-[2.17.0]: https://github.com/osixia/docker-mariadb/compare/v2.16.5...v2.17.0
-[2.16.5]: https://github.com/osixia/docker-mariadb/compare/v2.16.2...v2.16.5
+[3.5.0]: https://github.com/osixia/docker-matomo/compare/v3.4.0...v3.5.0
+[3.4.0]: https://github.com/osixia/docker-matomo/compare/v3.3.0...v3.4.0
+[3.3.0]: https://github.com/osixia/docker-matomo/compare/v3.2.1...v3.3.0
+[3.2.1]: https://github.com/osixia/docker-matomo/compare/v3.2.0...v3.2.1
+[3.2.0]: https://github.com/osixia/docker-matomo/compare/v3.1.1...v3.2.0
+[3.1.1]: https://github.com/osixia/docker-matomo/compare/v3.1.0...v3.1.1
+[3.1.0]: https://github.com/osixia/docker-matomo/compare/v3.0.4...v3.1.0
+[3.0.4]: https://github.com/osixia/docker-matomo/compare/v2.17.1...v3.0.4
+[2.17.1]: https://github.com/osixia/docker-matomo/compare/v2.17.0...v2.17.1
+[2.17.0]: https://github.com/osixia/docker-matomo/compare/v2.16.5...v2.17.0
+[2.16.5]: https://github.com/osixia/docker-matomo/compare/v2.16.2...v2.16.5
