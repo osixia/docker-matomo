@@ -2,7 +2,7 @@ FROM osixia/web-baseimage:1.1.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Matomo version
-ARG MATOMO_VERSION=3.5.0
+ARG MATOMO_VERSION=3.5.1
 
 # MariaDB version
 ARG MARIADB_MAJOR=10.2
