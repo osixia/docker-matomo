@@ -1,11 +1,10 @@
 FROM osixia/web-baseimage:1.1.1
-MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Matomo version
-ARG MATOMO_VERSION=3.5.1
+ARG MATOMO_VERSION=3.6.0
 
 # MariaDB version
-ARG MARIADB_MAJOR=10.2
+ARG MARIADB_MAJOR=10.3
 
 # Install apache2 and php7.0-fpm using osixia/baseimage utils
 # Caution: /container/tool/install-service-available arguments order is important
@@ -13,41 +12,41 @@ ARG MARIADB_MAJOR=10.2
 
 # Add MariaDB repository
 RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 \
-    && echo "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/$MARIADB_MAJOR/debian stretch main" > /etc/apt/sources.list.d/mariadb.list \
-    && { \
-		     echo 'Package: *'; \
-		     echo 'Pin: release o=MariaDB'; \
-		     echo 'Pin-Priority: 999'; \
-	     } > /etc/apt/preferences.d/mariadb
+  && echo "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/$MARIADB_MAJOR/debian stretch main" > /etc/apt/sources.list.d/mariadb.list \
+  && { \
+  echo 'Package: *'; \
+  echo 'Pin: release o=MariaDB'; \
+  echo 'Pin-Priority: 999'; \
+  } > /etc/apt/preferences.d/mariadb
 
 # Download, check integrity and unzip phpMyAdmin to /var/www/matomo_bootstrap
 RUN apt-get update \
-		&& /container/tool/add-multiple-process-stack \
-		&& /container/tool/add-service-available :apache2 :php7.0-fpm :ssl-tools \
-		&& LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-       ca-certificates \
-       curl \
-       mariadb-client-$MARIADB_MAJOR \
-       php7.0-cli \
-       php7.0-curl \
-       php7.0-gd \
-       php7.0-geoip \
-       php7.0-ldap \
-       php7.0-mbstring \
-       php7.0-mysql \
-       php7.0-xml \
-       ssmtp \
-       zip \
-		&& curl -o matomo.tar.gz -SL https://builds.matomo.org/piwik-${MATOMO_VERSION}.tar.gz \
-		&& mkdir -p /var/www/matomo_bootstrap /var/www/matomo \
-		&& tar -xzf matomo.tar.gz --strip 1 -C /var/www/matomo_bootstrap \
-    && echo "${MATOMO_VERSION}" > /var/www/matomo_bootstrap/VERSION \
-    && curl -fsSL -o /var/www/matomo_bootstrap/misc/GeoIPCity.dat.gz https://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
-    && gunzip /var/www/matomo_bootstrap/misc/GeoIPCity.dat.gz \
-		&& apt-get remove -y --purge --auto-remove curl \
-    && rm matomo.tar.gz \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  && /container/tool/add-multiple-process-stack \
+  && /container/tool/add-service-available :apache2 :php7.0-fpm :ssl-tools \
+  && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  ca-certificates \
+  curl \
+  mariadb-client-$MARIADB_MAJOR \
+  php7.0-cli \
+  php7.0-curl \
+  php7.0-gd \
+  php7.0-geoip \
+  php7.0-ldap \
+  php7.0-mbstring \
+  php7.0-mysql \
+  php7.0-xml \
+  ssmtp \
+  zip \
+  && curl -o matomo.tar.gz -SL https://builds.matomo.org/piwik-${MATOMO_VERSION}.tar.gz \
+  && mkdir -p /var/www/matomo_bootstrap /var/www/matomo \
+  && tar -xzf matomo.tar.gz --strip 1 -C /var/www/matomo_bootstrap \
+  && echo "${MATOMO_VERSION}" > /var/www/matomo_bootstrap/VERSION \
+  && curl -fsSL -o /var/www/matomo_bootstrap/misc/GeoIPCity.dat.gz https://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
+  && gunzip /var/www/matomo_bootstrap/misc/GeoIPCity.dat.gz \
+  && apt-get remove -y --purge --auto-remove curl \
+  && rm matomo.tar.gz \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add service directory to /container/service
 ADD service /container/service
