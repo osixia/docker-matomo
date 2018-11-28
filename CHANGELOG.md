@@ -84,6 +84,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 2.16.2 - 2016-09-24
 Initial release
 
+[3.7.0]: https://github.com/osixia/docker-matomo/compare/v3.6.1...v3.7.0
+[3.6.1]: https://github.com/osixia/docker-matomo/compare/v3.6.0...v3.6.1
+[3.6.0]: https://github.com/osixia/docker-matomo/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/osixia/docker-matomo/compare/v3.5.0...v3.5.1
 [3.5.0]: https://github.com/osixia/docker-matomo/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/osixia/docker-matomo/compare/v3.3.0...v3.4.0
