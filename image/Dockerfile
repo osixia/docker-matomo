@@ -1,7 +1,7 @@
 FROM osixia/web-baseimage:1.1.1
 
 # Matomo version
-ARG MATOMO_VERSION=3.7.0
+ARG MATOMO_VERSION=3.8.0
 
 # MariaDB version
 ARG MARIADB_MAJOR=10.3
@@ -11,7 +11,7 @@ ARG MARIADB_MAJOR=10.3
 # php7.0-fpm install will detect apache2 and configure it
 
 # Add MariaDB repository
-RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 \
+RUN apt-key adv --no-tty --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 \
   && echo "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/$MARIADB_MAJOR/debian stretch main" > /etc/apt/sources.list.d/mariadb.list \
   && { \
   echo 'Package: *'; \
@@ -41,8 +41,8 @@ RUN apt-get update \
   && mkdir -p /var/www/matomo_bootstrap /var/www/matomo \
   && tar -xzf matomo.tar.gz --strip 1 -C /var/www/matomo_bootstrap \
   && echo "${MATOMO_VERSION}" > /var/www/matomo_bootstrap/VERSION \
-  && curl -fsSL -o /var/www/matomo_bootstrap/misc/GeoIPCity.dat.gz https://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
-  && gunzip /var/www/matomo_bootstrap/misc/GeoIPCity.dat.gz \
+  && curl -fsSL -o /var/www/matomo_bootstrap/misc/GeoLite2-City.tar.gz https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz \
+  && gunzip /var/www/matomo_bootstrap/misc/GeoLite2-City.tar.gz \
   && apt-get remove -y --purge --auto-remove curl \
   && rm matomo.tar.gz \
   && apt-get clean \

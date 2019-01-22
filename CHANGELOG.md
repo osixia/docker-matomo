@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.8.0] - 2019-01-21
+### Changed
+  - Matomo 3.8.0
+
 ## [3.7.0] - 2018-11-29
 ### Changed
   - Matomo 3.7.0
@@ -84,6 +88,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 2.16.2 - 2016-09-24
 Initial release
 
+[3.8.0]: https://github.com/osixia/docker-matomo/compare/v3.8.0...v3.8.0
 [3.7.0]: https://github.com/osixia/docker-matomo/compare/v3.6.1...v3.7.0
 [3.6.1]: https://github.com/osixia/docker-matomo/compare/v3.6.0...v3.6.1
 [3.6.0]: https://github.com/osixia/docker-matomo/compare/v3.5.1...v3.6.0
