@@ -1,7 +1,7 @@
 FROM osixia/web-baseimage:1.1.1
 
 # Matomo version
-ARG MATOMO_VERSION=3.8.0
+ARG MATOMO_VERSION=3.8.1
 
 # MariaDB version
 ARG MARIADB_MAJOR=10.3
