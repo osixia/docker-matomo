@@ -15,6 +15,7 @@ load test_helper
 
   run_image
   wait_process apache2 php-fpm7.0
+  sleep 1
   curl --silent --insecure https://$CONTAINER_IP >> $tmp_file
   run grep -c "installation-progress" $tmp_file
   rm $tmp_file
