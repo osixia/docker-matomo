@@ -1,3 +1,3 @@
 # Backup mail directory
-{{ MATOMO_BACKUP_CRON_EXP }} root /sbin/matomo-backup > /proc/1/fd/1 2>/proc/1/fd/2
+{{ MATOMO_BACKUP_CRON_EXP }} root /sbin/matomo-backup > /proc/self/fd/1 2>/proc/self/fd/2
 # empty line

@@ -1,5 +1,5 @@
 NAME = osixia/matomo
-VERSION = 3.8.1
+VERSION = 3.9.1
 
 .PHONY: build build-nocache test tag-latest push push-latest release git-tag-version
 
