@@ -3,9 +3,11 @@ MATOMO_FORCE_UPDATE: false # if matomo image version is > current version the im
 MATOMO_BACKUP_CRON_EXP: 30 4 * * * #every day at 4:30am
 MATOMO_BACKUP_TTL: 15 # Delete backups that are over 15 days
 
+MATOMO_ARCHIVE_CRON_EXP: 5 * * * *
 
 # Apache
 MATOMO_SERVER_ADMIN: webmaster@example.org
+MATOMO_SERVER_BASE_URL: http://matomo.example.org
 MATOMO_SERVER_PATH: /matomo
 
 # Self signed certificat will be generated

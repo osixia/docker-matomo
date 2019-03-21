@@ -42,7 +42,9 @@ RUN apt-get update \
   && tar -xzf matomo.tar.gz --strip 1 -C /var/www/matomo_bootstrap \
   && echo "${MATOMO_VERSION}" > /var/www/matomo_bootstrap/VERSION \
   && curl -fsSL -o /var/www/matomo_bootstrap/misc/GeoLite2-City.tar.gz https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz \
-  && gunzip /var/www/matomo_bootstrap/misc/GeoLite2-City.tar.gz \
+  && cd /var/www/matomo_bootstrap/misc \
+  && tar -xvf /var/www/matomo_bootstrap/misc/GeoLite2-City.tar.gz --strip-components 1 \
+  && cd - \
   && apt-get remove -y --purge --auto-remove curl \
   && rm matomo.tar.gz \
   && apt-get clean \

@@ -14,11 +14,19 @@ chmod 600 ${CONTAINER_SERVICE_DIR}/backup/assets/cronjobs
 FIRST_START_DONE="${CONTAINER_STATE_DIR}/docker-backup-backup-first-start-done"
 # container first start
 if [ ! -e "$FIRST_START_DONE" ]; then
-
-  # adapt cronjobs file
-  sed -i "s|{{ MATOMO_BACKUP_CRON_EXP }}|${MATOMO_BACKUP_CRON_EXP}|g" ${CONTAINER_SERVICE_DIR}/backup/assets/cronjobs
-
-  touch $FIRST_START_DONE
+    
+    if [ "$MATOMO_SERVER_PATH" = "/" ]; then
+        MATOMO_SERVER_PATH=""
+    fi
+    
+    # adapt cronjobs file
+    sed -i "s|{{ MATOMO_BACKUP_CRON_EXP }}|${MATOMO_BACKUP_CRON_EXP}|g" ${CONTAINER_SERVICE_DIR}/backup/assets/cronjobs
+    
+    sed -i "s|{{ MATOMO_ARCHIVE_CRON_EXP }}|${MATOMO_ARCHIVE_CRON_EXP}|g" ${CONTAINER_SERVICE_DIR}/backup/assets/cronjobs
+    sed -i "s|{{ MATOMO_SERVER_BASE_URL }}|${MATOMO_SERVER_BASE_URL}|g" ${CONTAINER_SERVICE_DIR}/backup/assets/cronjobs
+    sed -i "s|{{ MATOMO_SERVER_PATH }}|${MATOMO_SERVER_PATH}|g" ${CONTAINER_SERVICE_DIR}/backup/assets/cronjobs
+    
+    touch $FIRST_START_DONE
 fi
 
 exit 0
