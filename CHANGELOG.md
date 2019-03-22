@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.9.1-1] - 2019-03-22
 ### Fixed
   - Cron log with /usr/bin/logger
+  - Clean unnecessary files
 
 ## [3.9.1] - 2019-03-21
 ### Changed
