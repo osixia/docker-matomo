@@ -5,14 +5,14 @@
 ln -sf /container/service/matomo/assets/apache2/matomo.conf /etc/apache2/sites-available/matomo.conf
 ln -sf /container/service/matomo/assets/apache2/matomo-ssl.conf /etc/apache2/sites-available/matomo-ssl.conf
 
-cat /container/service/matomo/assets/php7.0-fpm/pool.conf >> /etc/php/7.0/fpm/pool.d/www.conf
-rm /container/service/matomo/assets/php7.0-fpm/pool.conf
+cat /container/service/matomo/assets/php7.3-fpm/pool.conf >> /etc/php/7.3/fpm/pool.d/www.conf
+rm /container/service/matomo/assets/php7.3-fpm/pool.conf
 
-cp -f /container/service/matomo/assets/php7.0-fpm/opcache.ini /etc/php/7.0/fpm/conf.d/opcache.ini
-rm /container/service/matomo/assets/php7.0-fpm/opcache.ini
+cp -f /container/service/matomo/assets/php7.3-fpm/opcache.ini /etc/php/7.3/fpm/conf.d/opcache.ini
+rm /container/service/matomo/assets/php7.3-fpm/opcache.ini
 
-echo "open_basedir = /var/www" >> /etc/php/7.0/fpm/php.ini
-echo "geoip.custom_directory=/var/www/matomo/misc" >> /etc/php/7.0/fpm/php.ini
+echo "open_basedir = /var/www" >> /etc/php/7.3/fpm/php.ini
+echo "geoip.custom_directory=/var/www/matomo/misc" >> /etc/php/7.3/fpm/php.ini
 
 mkdir -p /var/www/tmp
 chown www-data:www-data /var/www/tmp
