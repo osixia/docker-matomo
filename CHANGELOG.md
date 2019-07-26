@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.11.0] - 2019-07-26
+### Changed
+  - Matomo 3.11.0
+  - Upgrade baseimage: web-baseimage:1.2.0
+
 ## [3.9.1-1] - 2019-04-06
 ### Fixed
   - Cron log with /usr/bin/logger
@@ -45,11 +50,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - MariaDB ssl
 
 ### Changed
-  - Matomo 3.5.0 (formerly Piwik)
+  - Matomo 3.5.0
 
 ## [3.4.0] - 2018-03-28
 ### Changed
-  - Matomo 3.4.0 (formerly Piwik)
+  - Matomo 3.4.0
 
 ## [3.3.0] - 2018-01-13
 ### Changed
@@ -104,6 +109,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 2.16.2 - 2016-09-24
 Initial release
 
+[3.9.1-1]: https://github.com/osixia/docker-matomo/compare/v3.9.1-1...v3.11.0
 [3.9.1-1]: https://github.com/osixia/docker-matomo/compare/v3.9.1...v3.9.1-1
 [3.9.1]: https://github.com/osixia/docker-matomo/compare/v3.8.1...v3.9.1
 [3.8.1]: https://github.com/osixia/docker-matomo/compare/v3.8.0...v3.8.1
