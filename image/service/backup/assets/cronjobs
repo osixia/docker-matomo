@@ -1,4 +1,5 @@
 # Backup mail directory
-{{ MATOMO_BACKUP_CRON_EXP }} root /sbin/matomo-backup > /proc/self/fd/1 2>/proc/self/fd/2
-{{ MATOMO_ARCHIVE_CRON_EXP }} www-data /usr/bin/php7.0 /var/www/matomo/console core:archive --url={{ MATOMO_SERVER_BASE_URL }}{{ MATOMO_SERVER_PATH }}/ > /proc/self/fd/1 2>/proc/self/fd/2
+MAILTO=""
+{{ MATOMO_BACKUP_CRON_EXP }} root /sbin/matomo-backup 2>&1 | /usr/bin/logger -t cron_backup
+{{ MATOMO_ARCHIVE_CRON_EXP }} www-data /usr/bin/php7.0 /var/www/matomo/console core:archive --url={{ MATOMO_SERVER_BASE_URL }}{{ MATOMO_SERVER_PATH }}/ 2>&1 | /usr/bin/logger -t cron_matomo_archive
 # empty line
