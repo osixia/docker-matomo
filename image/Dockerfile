@@ -1,32 +1,24 @@
-FROM osixia/web-baseimage:1.2.0
+FROM osixia/web-baseimage:release-1.2.0-dev
 
 # Matomo version
-ARG MATOMO_VERSION=3.11.0
+ARG MATOMO_VERSION=3.12.0
 
-# MariaDB version
-ARG MARIADB_MAJOR=10.3
-
-# Install apache2 and php7.3-fpm using osixia/baseimage utils
-# Caution: /container/tool/install-service-available arguments order is important
-# php7.3-fpm install will detect apache2 and configure it
-
-# Add MariaDB repository
-RUN apt-key adv --no-tty --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 \
-  && echo "deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/$MARIADB_MAJOR/debian stretch main" > /etc/apt/sources.list.d/mariadb.list \
-  && { \
-  echo 'Package: *'; \
-  echo 'Pin: release o=MariaDB'; \
-  echo 'Pin-Priority: 999'; \
-  } > /etc/apt/preferences.d/mariadb
-
-# Download, check integrity and unzip phpMyAdmin to /var/www/matomo_bootstrap
+# Add multiple process stack to supervise apache2 and php7.3-fpm
+# sources: https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-multiple-process-stack
+#          https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-service-available
+#          https://github.com/osixia/docker-web-baseimage/blob/stable/image/service-available/:apache2/download.sh
+#          https://github.com/osixia/docker-web-baseimage/blob/stable/image/service-available/:php7.3-fpm/download.sh
+#          https://github.com/osixia/light-baseimage/blob/stable/image/service-available/:ssl-tools/download.sh
+# Install ca-certificates, curl and php dependencies
+# Download matomo, check file integrity, and unzip matomo to /var/www/matomo_bootstrap
+# Remove curl
 RUN apt-get update \
   && /container/tool/add-multiple-process-stack \
   && /container/tool/add-service-available :apache2 :php7.3-fpm :ssl-tools \
   && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   ca-certificates \
   curl \
-  mariadb-client-$MARIADB_MAJOR \
+  mariadb-client \
   php-cli \
   php-curl \
   php-gd \
