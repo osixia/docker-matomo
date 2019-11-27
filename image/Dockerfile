@@ -1,7 +1,7 @@
 FROM osixia/web-baseimage:release-1.2.0-dev
 
 # Matomo version
-ARG MATOMO_VERSION=3.12.0
+ARG MATOMO_VERSION=3.13.0
 
 # Add multiple process stack to supervise apache2 and php7.3-fpm
 # sources: https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-multiple-process-stack
