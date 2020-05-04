@@ -6,7 +6,7 @@
 
 [hub]: https://hub.docker.com/r/osixia/matomo/
 
-Latest release: 3.13.0 - Matomo 3.13.0 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/matomo/) 
+Latest release: 3.13.5 - Matomo 3.13.5 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/matomo/) 
 
 **A docker image to run Matomo (formerly Piwik).**
 > [matomo.org](https://matomo.org)

@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.13.5] - 2020-05-04
+### Changed
+  - Upgrade Matomo version to 3.13.5
+
+
 ## [3.13.0] - 2019-11-27
 ### Changed
   - Upgrade Matomo version to 3.13.0
@@ -122,6 +127,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 2.16.2 - 2016-09-24
 Initial release
 
+[3.13.5]: https://github.com/osixia/docker-matomo/compare/v3.13.0...v3.13.5
 [3.13.0]: https://github.com/osixia/docker-matomo/compare/v3.12.0...v3.13.0
 [3.12.0]: https://github.com/osixia/docker-matomo/compare/v3.11.0...v3.12.0
 [3.11.0]: https://github.com/osixia/docker-matomo/compare/v3.9.1-1...v3.11.0
